@@ -69,7 +69,7 @@ function App() {
   }, []);
   return (
 	<div>
-	    <ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator />
+	  <ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator />
 		<h1>Track Scroll Progress</h1>
 		<article>...content...</article>
 	</div>
@@ -97,7 +97,7 @@ If no children are provided, the default JSX (progress bar and percentage text) 
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/appility/scroll-tracker.git
 ```
 
 Install dependencies:

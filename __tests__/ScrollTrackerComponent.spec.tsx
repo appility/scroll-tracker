@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, act } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import ScrollTracker from './../src/ScrollTrackerComponent';
 
 // Mock the setTimeout function
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 jest.spyOn(global, 'setTimeout').mockImplementation((fn: any) => fn());
 
 describe('ScrollTracker Component', () => {
@@ -14,6 +16,25 @@ describe('ScrollTracker Component', () => {
     
     expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
     addEventListenerSpy.mockRestore();
+  });
+
+  test('displays progress with showVisualIndicator as true', () => {
+    render(<ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator={true} />);
+    // Check the progress element
+    const wrapper = screen.getByRole('progressbar');
+    expect(wrapper).toBeInTheDocument();
+  });
+
+  test('renders with custom children when passed', () => {
+    render(
+      <ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator>
+        {(progress) => <span>{progress}%</span>}
+      </ScrollTracker>
+    );
+
+    // Check that custom children render correctly
+    const progressText = screen.getByText('0%');
+    expect(progressText).toBeInTheDocument();
   });
 
   test('dispatches scrollProgress events on scroll', () => {

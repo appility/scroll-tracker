@@ -8,6 +8,7 @@ import { trackScrollDepth } from './common/trackScrollDepth';
 const ScrollTracker = ({ thresholds, showVisualIndicator=false, children }: ScrollTrackerProps) => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
+    /* istanbul ignore next */
     if (typeof window === 'undefined') {
       console.warn('ScrollTracker component should not be used on the server side.');
     }

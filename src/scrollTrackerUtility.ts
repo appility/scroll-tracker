@@ -8,5 +8,5 @@ import { trackScrollDepth } from './common/trackScrollDepth';
   };
   // Attach to the global object for UMD
   // eslint-disable-next-line
-  (window as any).ScrollTracker = { trackScroll };
+  (window as any).ScrollTrackerUtility = { trackScroll };
 })();

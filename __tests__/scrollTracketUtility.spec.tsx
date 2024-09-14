@@ -9,12 +9,12 @@ require('./../src/scrollTrackerUtility');
 
 // Extend the global Window interface
 declare global {
-    interface Window {
-      ScrollTracker: {
-        trackScrollDepth: (thresholds: number[]) => void;
-      };
-    }
+  interface Window {
+    ScrollTrackerUtility: {
+      trackScroll: (thresholds: number[]) => void;
+    };
   }
+}
 
 describe('scrollTracketUtility', () => {
   test('dispatches scrollProgress events at scroll thresholds, with debounce mocked', () => {
@@ -28,7 +28,7 @@ describe('scrollTracketUtility', () => {
     Object.defineProperty(window, 'innerHeight', { value: 500, writable: true });
   
     // Trigger the trackScrollDepth logic
-    window.ScrollTracker.trackScrollDepth([25, 50, 100]);
+    window.ScrollTrackerUtility.trackScroll([25, 50, 100]);
   
     // Trigger the scroll handler directly
     window.dispatchEvent(new Event('scroll'));
