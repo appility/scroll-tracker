@@ -1,0 +1,61 @@
+{
+  "name": "@appility/scrolltracker",
+  "version": "1.0.0",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "react": "./dist/react.js"
+    }
+  },
+  "types": "dist/types/ScrollTracker.d.ts",
+  "scripts": {
+    "lint": "eslint 'src/**/*.{js,ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
+    "test": "jest --coverage",
+    "test:coverage:open": "jest --coverage && (open coverage/lcov-report/index.html || start coverage/lcov-report/index.html)",
+    "build": "rollup -c && npm run copy-to-example",
+    "copy-to-example": "copyfiles -u 1 dist/react.js dist/types/ScrollTrackerComponent.d.ts examples/demo-react/src/dist"
+  },
+  "author": "Dermot Byrne",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.25.6",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-react": "^7.36.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "tslib": "^2.7.0"
+  }
+}

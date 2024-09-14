@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Tracker Demo</title>
+  <script src="../../dist/index.umd.js"></script>
+</head>
+<body>
+  <div style="position: fixed; width: 100%; left: 0; transform: translate(0); text-align: center;">
+    <span id="update"></span>
+  </div>
+  <h1>Scroll Tracker Demo</h1>
+  <article style="height: 10000px">
+    Scroll down to see the progress events.
+  </article>
+  
+  <script>
+    ScrollTracker.trackScrollDepth([25, 50, 100]);
+    window.addEventListener('scrollProgress', (event) => {
+      console.log(`Scrolled to ${event.detail.percentage}%`);
+      if (document.getElementById('update')) {
+        var t = document.getElementById('update');
+        t.textContent = `Scrolled to ${event.detail.percentage}%`;
+      }
+    });
+  </script>
+</body>
+</html>
