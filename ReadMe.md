@@ -29,7 +29,7 @@ npm  install @appility/scrolltracker
 ```
 
 For  vanilla  JavaScript,  include  the  UMD  bundle  directly  in  your  HTML:
-```
+```html
 <script src="path/to/dist/index.umd.js"></script>
 ```
 
@@ -51,7 +51,7 @@ Note you can pass in custom values for the thresholds.
 
 ### React
 To  use  with  React,  import  the  ScrollTracker  component  and  integrate  it  into  your  app:
-```
+```JSX
 import ScrollTracker from '@appility/scrolltracker';
 function App() {
   useEffect(() => {
@@ -83,7 +83,7 @@ If required the react component can receive children as a function.
 If provided, the children function receives the progress value and renders custom JSX.
 If no children are provided, the default JSX (progress bar and percentage text) is rendered.
 
-```
+```JSX
 <ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator>
   {(progress) => (
     <div>Scroll progress: {Math.round(progress)}%</div>
@@ -104,6 +104,7 @@ Install dependencies:
 ```bash
 npm install
 ```
+
 Build the project:
 ```bash
 npm run build
