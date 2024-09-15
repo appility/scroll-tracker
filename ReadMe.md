@@ -15,7 +15,7 @@
 
 - Supports custom scroll event dispatching.
 
-- React version optionally shows a visual representation of the scroll progress or can use your own, using render props
+- React version optionally shows a visual representation of the scroll progress or allows you to create a custom scroll indicator using render props
 
 
 ## Installation
@@ -38,19 +38,19 @@ For  vanilla  JavaScript,  include  the  UMD  bundle  directly  in  your  HTML:
 
 To  track  scroll  depth  in  a  non-React  environment:
 ```html
-<script src="path/to/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@appility/scrolltracker"></script>
 <script>
+  if (window.ScrollTrackerUtility) {
     window.ScrollTrackerUtility.trackScroll([25, 50, 100]);
-
-    // Listen for the scrollProgress custom event
     window.addEventListener('scrollProgress', (event) => {
-      console.log(`Scrolled to ${event.detail.percentage}%`);
-      
       const updateElement = document.getElementById('update');
       if (updateElement) {
         updateElement.textContent = `Scrolled to ${event.detail.percentage}%`;
       }
     });
+  } else {
+    console.error('ScrollTrackerUtility is not defined.');
+  }
 </script>
 ```
 Note you can pass in custom values for the thresholds.
@@ -63,14 +63,14 @@ import React, { useEffect } from 'react';
 import ScrollTracker from '@appility/scrolltracker/react';
 function App() {
   useEffect(() => {
-    // Event listener for scrollProgress
+    // event listener for scrollProgress
     const handleScrollProgress = (event) => {
       console.log(`Scrolled to ${event.detail.percentage}%`);
     };
 
     window.addEventListener('scrollProgress', handleScrollProgress);
 
-    // Cleanup to avoid memory leaks
+    // cleanup to avoid memory leaks
     return () => {
       window.removeEventListener('scrollProgress', handleScrollProgress);
     };
@@ -137,7 +137,8 @@ src/
 dist/
 ├── index.js # CommonJS bundle
 ├── index.esm.js # ES module
-└── index.umd.js # UMD bundle for browsers
+├── index.umd.js # UMD bundle for browsers
+└── react.js # React component
 ```
 ### License
 This project is licensed under the ISC License.

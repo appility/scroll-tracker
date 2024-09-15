@@ -1,17 +1,16 @@
 import babel from 'rollup-plugin-babel';
 import terser from '@rollup/plugin-terser';
-import typescript from '@rollup/plugin-typescript'; // Import TypeScript plugin
+import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
-
 
 export default [
   {
-    input: 'src/scrollTrackerUtility.ts',  // Change this to the TypeScript file
+    input: 'src/scrollTrackerUtility.ts',
     output: [
-      // {
-      //   file: 'dist/index.js',
-      //   format: 'cjs' // CommonJS for non-React
-      // },
+      {
+        file: 'dist/index.js',
+        format: 'cjs' // CommonJS for non-React
+      },
       {
         file: 'dist/index.esm.js',
         format: 'esm' // ES Module
@@ -19,24 +18,24 @@ export default [
       {
         file: 'dist/index.umd.js',
         format: 'umd',
-        name: 'ScrollTracker' // This is the global name
+        name: 'ScrollTracker'
       }
     ],
-    plugins: [typescript(), babel(), terser()] // Add TypeScript plugin
+    plugins: [typescript(), babel(), terser()]
   },
   {
     input: 'src/ScrollTrackerComponent.tsx',
     output: {
       file: 'dist/react.js',
-      format: 'esm', // ES Module for React
+      format: 'esm',
       name: 'ScrollTracker'
     },
     external: ['react', 'react-dom','prop-types'],
     plugins: [
       postcss({
         modules: true,
-        extract: false,  // Extracts CSS into dist/styles.css
-        minimize: true  // Minify the CSS
+        extract: false,
+        minimize: true
       }),
       typescript(),
       babel({

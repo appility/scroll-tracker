@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scroll Tracker Demo</title>
   <script src="../../dist/index.umd.js"></script>
-  <!-- <script src="https://unpkg.com/@appility/scrolltracker@1.0.2/dist/index.umd.js"></script> -->
 </head>
 <body>
   <div style="position: fixed; width: 100%; left: 0; transform: translate(0); text-align: center;">
@@ -17,9 +16,9 @@
   </article>
   
   <script>
+  if (window.ScrollTrackerUtility) {
     window.ScrollTrackerUtility.trackScroll([25, 50, 100]);
 
-    // Listen for the scrollProgress custom event
     window.addEventListener('scrollProgress', (event) => {
       console.log(`Scrolled to ${event.detail.percentage}%`);
       
@@ -28,6 +27,9 @@
         updateElement.textContent = `Scrolled to ${event.detail.percentage}%`;
       }
     });
+  } else {
+    console.error('ScrollTrackerUtility is not defined.');
+  }
   </script>
 </body>
 </html>
