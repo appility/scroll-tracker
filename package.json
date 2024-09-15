@@ -1,13 +1,17 @@
 {
   "name": "@appility/scrolltracker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.umd.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "react": "./dist/react.js"
+      "import": "./dist/index.esm.js",  
+      "require": "./dist/index.umd.js"
+    },
+    "./react": {
+      "import": "./dist/react.js",
+      "require": "./dist/react.js"
     }
   },
   "types": "dist/types/ScrollTracker.d.ts",

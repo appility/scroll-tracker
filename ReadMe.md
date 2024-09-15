@@ -25,12 +25,12 @@
 For use with React and JavaScript bundlers like Webpack or Rollup:
 
 ```bash
-npm  install @appility/scrolltracker
+npm install @appility/scrolltracker
 ```
 
 For  vanilla  JavaScript,  include  the  UMD  bundle  directly  in  your  HTML:
 ```html
-<script src="path/to/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@appility/scrolltracker"></script>
 ```
 
 ### Usage
@@ -40,19 +40,27 @@ To  track  scroll  depth  in  a  non-React  environment:
 ```html
 <script src="path/to/dist/index.umd.js"></script>
 <script>
-  ScrollTracker.trackScrollDepth([25,  50,  75,  100]);
-  window.addEventListener('scrollProgress', (event) => {
-    console.log(`Scrolled to ${event.detail.percentage}%`);
-  });
+    window.ScrollTrackerUtility.trackScroll([25, 50, 100]);
+
+    // Listen for the scrollProgress custom event
+    window.addEventListener('scrollProgress', (event) => {
+      console.log(`Scrolled to ${event.detail.percentage}%`);
+      
+      const updateElement = document.getElementById('update');
+      if (updateElement) {
+        updateElement.textContent = `Scrolled to ${event.detail.percentage}%`;
+      }
+    });
 </script>
 ```
 Note you can pass in custom values for the thresholds.
 
 
 ### React
-To  use  with  React,  import  the  ScrollTracker  component  and  integrate  it  into  your  app:
+To  use  with  React, import the ScrollTracker component and integrate it into your app:
 ```JSX
-import ScrollTracker from '@appility/scrolltracker';
+import React, { useEffect } from 'react';
+import ScrollTracker from '@appility/scrolltracker/react';
 function App() {
   useEffect(() => {
     // Event listener for scrollProgress
@@ -71,7 +79,7 @@ function App() {
 	<div>
 	  <ScrollTracker thresholds={[25, 50, 100]} showVisualIndicator />
 		<h1>Track Scroll Progress</h1>
-		<article>...content...</article>
+		<article style={{"height": "10000px"}}>...long content...</article>
 	</div>
 );
 }
