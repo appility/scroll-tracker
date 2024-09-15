@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from './common/debounce'
+import { trackScrollDepth } from './common/trackScrollDepth';
 import styles from './styles/ScrollTracker.module.css';
 import type { ScrollTrackerProps } from './ScrollTracker.d.ts'; 
-import { trackScrollDepth } from './common/trackScrollDepth';
 
-const ScrollTracker = ({ thresholds, showVisualIndicator=false, children }: ScrollTrackerProps) => {
+const ScrollTracker = ({ thresholds, showVisualIndicator=true, children }: ScrollTrackerProps) => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     /* istanbul ignore next */
@@ -37,8 +37,4 @@ ScrollTracker.propTypes = {
   thresholds: PropTypes.arrayOf(PropTypes.number).isRequired,
   showVisualIndicator: PropTypes.bool,
   children: PropTypes.func,
-};
-
-ScrollTracker.defaultProps = {
-  showVisualIndicator: false,
 };

@@ -8,8 +8,5 @@ declare const ScrollTracker: {
         showVisualIndicator: PropTypes.Requireable<boolean>;
         children: PropTypes.Requireable<(...args: any[]) => any>;
     };
-    defaultProps: {
-        showVisualIndicator: boolean;
-    };
 };
 export default ScrollTracker;
