@@ -22,7 +22,8 @@
 
 ### npm
 
-For use with React and JavaScript bundlers like Webpack or Rollup:
+For use with React and JavaScript bundlers like Webpack or Rollup.
+You can install the package from npm:
 
 ```bash
 npm install @appility/scrolltracker
